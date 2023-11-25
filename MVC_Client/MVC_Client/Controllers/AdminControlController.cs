@@ -13,7 +13,7 @@ namespace MVC_Client.Controllers
         {
             return View();
         }
-        [HttpPost]
+       
         
     }
 }

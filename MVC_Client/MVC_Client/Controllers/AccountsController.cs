@@ -31,14 +31,14 @@ namespace MVC_Client.Controllers
                 {
                     return View(customer);
                 }
-                client.BaseAddress = new Uri("https://localhost:44336/api");
+                //client.BaseAddress = new Uri("https://localhost:44336/api");
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = client.PostAsJsonAsync("api/Customer", customer).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
                     // Registration successful, you can redirect to a success page or login
-                    ViewBag.result = "Registration successfull";
+                    ViewBag.Result = "Registration successfull";
                     return RedirectToAction("Login");
                 }
                 else
