@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ETSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" Nullable="false" />
+    <Property Name="AdminName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ETSDB.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar(max)" />
+    <Property Name="PhoneNo" Type="bigint" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="AccountBalance" Type="float" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ETSDB.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorId" Type="int" />
+    <Property Name="BrandName" Type="varchar" MaxLength="100" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Availability" Type="bit" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorId" />
+    </Key>
+    <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar(max)" />
+    <Property Name="PhoneNo" Type="bigint" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK__Product__VendorI__29572725">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ETSDBModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Customer].[CustomerId] AS [CustomerId], 
+    [Customer].[Name] AS [Name], 
+    [Customer].[EmailId] AS [EmailId], 
+    [Customer].[PhoneNo] AS [PhoneNo], 
+    [Customer].[Address] AS [Address], 
+    [Customer].[AccountBalance] AS [AccountBalance], 
+    [Customer].[Password] AS [Password]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Product" EntityType="Self.Product" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Product].[ProductId] AS [ProductId], 
+    [Product].[VendorId] AS [VendorId], 
+    [Product].[BrandName] AS [BrandName], 
+    [Product].[Price] AS [Price], 
+    [Product].[Availability] AS [Availability]
+    FROM [dbo].[Product] AS [Product]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Product__VendorI__29572725" Association="Self.FK__Product__VendorI__29572725">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

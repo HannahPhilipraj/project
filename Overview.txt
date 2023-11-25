@@ -1,0 +1,73 @@
+
+
+1. Registration & Login:
+Models:
+User (base class for Admin, Customer, Vendor)
+Controllers:
+AccountController (for handling registration and login)
+Views:
+Register.cshtml (for user registration)
+Login.cshtml (for user login)
+2. Admin:
+Models:
+Admin
+Controllers:
+AdminController
+Views:
+Index.cshtml (Admin dashboard)
+Other views for managing products, users, etc.
+3. Customer:
+Models:
+Customer
+Controllers:
+CustomerController
+Views:
+Index.cshtml (Customer dashboard)
+Other views for browsing products, making purchases, etc.
+4. Vendors:
+Models:
+Vendor
+Controllers:
+VendorController
+Views:
+Index.cshtml (Vendor dashboard)
+Other views for managing products, orders, etc.
+5. Service:
+Models:
+Product
+Order
+Controllers:
+ProductController
+OrderController
+Views:
+ProductIndex.cshtml (List of products)
+OrderIndex.cshtml (List of orders)
+6. Accounts:
+Models:
+Account
+Controllers:
+AccountController (for managing user accounts)
+Views:
+ChangePassword.cshtml (Change user password)
+EditProfile.cshtml (Edit user profile)
+7. Unit Testing:
+Use tools such as:
+MSTest
+NUnit
+xUnit
+Create test classes for:
+User authentication
+Admin functionalities
+Customer functionalities
+Vendor functionalities
+Product and order management
+Account management
+Notes:
+Implement authentication and authorization using ASP.NET Identity or another suitable authentication mechanism.
+Use Entity Framework for database operations.
+Implement proper error handling and validation in all controllers.
+Apply best practices for MVC and Web API development.
+Use Dependency Injection for services and repositories.
+Consider implementing logging for tracking errors and events.
+Use asynchronous programming for better scalability.
+Implement responsive and user-friendly UI using HTML, CSS, and JavaScript frameworks like Bootstrap.
