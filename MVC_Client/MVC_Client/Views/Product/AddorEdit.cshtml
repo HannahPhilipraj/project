@@ -1,0 +1,74 @@
+﻿@model MVC_Client.Models.ProductMVC
+@{
+    ViewBag.Title = "AddorEdit";
+}
+
+<h2>Add or Edit</h2>
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.product_id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.brand_name)
+            @Html.EditorFor(model => model.brand_name)
+            @Html.ValidationMessageFor(model => model.brand_name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.brand_price)
+            @Html.EditorFor(model => model.brand_price)
+            @Html.ValidationMessageFor(model => model.brand_price)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.availability)
+            @Html.EditorFor(model => model.availability)
+            @Html.ValidationMessageFor(model => model.availability)
+        </div>
+
+    }
+</div>
+
+@*<p>
+    <a href="@Url.Action("AddorEdit","Product")" class="new-product">New Product</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Product ID</th>
+        <th>Vendor ID</th>
+        <th>Brand Name</th>
+        <th>Brand Price</th>
+        <th>Availability</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.product_id)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.vendor_id)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.brand_name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.brand_price)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.availability)
+            </td>
+
+            <td>
+                <a href="@Url.Action("AddorEdit","Product", new { id = item.product_id })" class="Edit-btn">Updated</a>
+                <a href="@Url.Action("Delete","Product", new { id = item.product_id })" class="Delete-btn">Delete</a>
+            </td>
+        </tr>
+    }
+</table>*@

@@ -38,7 +38,7 @@ namespace WebApi.Controllers
                 Price = product.Price,
                 Availability = product.Availability
             });
-            db.SaveChanges();
+            db.SaveChangesAsync();
             return Ok("Success");
         }
 
@@ -48,7 +48,7 @@ namespace WebApi.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(p).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChangesAsync();
             }
             return Ok("Record Updated");
         }
@@ -62,7 +62,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             db.Products.Remove(product);
-            db.SaveChanges();
+            db.SaveChangesAsync();
             return Ok("Record Deleted");
         }
     }

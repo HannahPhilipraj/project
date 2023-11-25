@@ -29,7 +29,7 @@ namespace WebApi.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChangesAsync();
             }
             return Ok("Record Updated");
         }
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             db.Customers.Remove(customer);
-            db.SaveChanges();
+            db.SaveChangesAsync();
             return Ok("Deleted");
         }
     }

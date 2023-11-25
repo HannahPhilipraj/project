@@ -24,13 +24,13 @@ namespace MVC_Client.Models
         [DisplayName("Phone no.")][Required]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be 10 digits")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Phone number must contain only digits")]        
-        public long phone_no { get; set; }
+        public Nullable<long> phone_no { get; set; }
 
         [DisplayName("Address")][Required]
         public string address { get; set; }
 
         [DisplayName("Account Balance")][Required]
-        public double account_balance { get; set; }
+        public Nullable<double> account_balance { get; set; }
 
         [DataType(DataType.Password)][Required]
         public string password { get; set; }

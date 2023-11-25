@@ -13,7 +13,7 @@ namespace WebApi.Controllers
         ETSDBEntities db = new ETSDBEntities();
 
         //Get
-        public IEnumerable<Vendor> Get()
+        public IEnumerable<Vendor> GetAll()
         {
             return db.Vendors.ToList();
         }
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
                 PhoneNo = v.PhoneNo,
                 Address = v.Address
             });
-            db.SaveChanges();
+            db.SaveChangesAsync();
             return Ok("Success");
         }
 
@@ -49,7 +49,7 @@ namespace WebApi.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(vendor).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChangesAsync();
             }
             return Ok("Record Updated");
         }
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             db.Vendors.Remove(vendor);
-            db.SaveChanges();
+            db.SaveChangesAsync();
             return Ok("Record Deleted");
         }
     }

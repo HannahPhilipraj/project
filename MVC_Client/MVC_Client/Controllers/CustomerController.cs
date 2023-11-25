@@ -20,7 +20,7 @@ namespace MVC_Client.Controllers
             customerlist = response.Content.ReadAsAsync<IEnumerable<CustomerMVC>>().Result;
             return View(customerlist);
         }
-
+        [HttpGet]
         public ActionResult Edit(int id)
         {
              HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Customer/" + id.ToString()).Result;
@@ -33,7 +33,7 @@ namespace MVC_Client.Controllers
               HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Customer/" + customer.customer_id, customer).Result;
               return RedirectToAction("Index");            
         }
-        [Authorize(Users ="Admin")]
+        //[Authorize(Users ="Admin")]
         public ActionResult Delete(int id)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Customer/" + id.ToString()).Result;

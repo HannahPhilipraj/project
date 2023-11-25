@@ -36,6 +36,7 @@ namespace WebApi.Controllers
                     Password=customer.Password
                 };
                 db.Customers.Add(newcustomer);
+                db.SaveChangesAsync();
                 return Ok("Registration successful");
             }
             return BadRequest("Invalid data Registration");
@@ -63,6 +64,7 @@ namespace WebApi.Controllers
                     Password = vendor.Password
                 };
                 db.Vendors.Add(newvendor);
+                db.SaveChangesAsync();
                 return Ok("Registration successful");
             }
             return BadRequest("Invalid data Registration");
