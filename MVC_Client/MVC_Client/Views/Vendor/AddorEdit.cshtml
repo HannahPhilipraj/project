@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC_Client.Models.VendorMVC> 
+@{
+    ViewBag.Title = "AddorEdit";
+}
+
+<h2>Add or Edit</h2>
+
+<p>
+    <a href="@Url.Action("AddorEdit","Vendor")" class="new-vendor">New Vendor</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Vendor ID</th>
+        <th>Vendor Name</th>
+        <th>Email ID</th>
+        <th>Phone no.</th>
+        <th>Address</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(m => item.vendor_id)
+    </td>
+    <td>
+        @Html.DisplayFor(m => item.vendor_name)
+    </td>
+    <td>
+        @Html.DisplayFor(m => item.email_id)
+    </td>
+    <td>
+        @Html.DisplayFor(m => item.phone_no)
+    </td>
+    <td>
+        @Html.DisplayFor(m => item.address)
+    </td>
+
+    <td>
+        <a href="@Url.Action("AddorEdit","Vendor", new { id = item.vendor_id })" class="Edit-btn">Updated</a>
+        <a href="@Url.Action("Delete","Vendor", new { id = item.vendor_id })" class="Delete-btn">Delete</a>
+    </td>
+</tr>
+    }
+</table>

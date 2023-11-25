@@ -11,6 +11,16 @@ namespace WebApi.Controllers
     public class AccountsController : ApiController
     {
         ETSDBEntities db = new ETSDBEntities();
+
+        public IHttpActionResult Login(Admin admin)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Customers.SingleOrDefault(a => a.Name == admin.AdminName && a.Password == admin.Password);
+                return Ok("Login successful");
+            }
+            return BadRequest("Invalid username or password");
+        }
         [HttpPost]
         public IHttpActionResult Register(Customer customer)
         {
@@ -66,6 +76,5 @@ namespace WebApi.Controllers
             }
             return BadRequest("Invalid username or password");
         }
-
     }
 }

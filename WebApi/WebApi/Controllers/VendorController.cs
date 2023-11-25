@@ -13,7 +13,7 @@ namespace WebApi.Controllers
         ETSDBEntities db = new ETSDBEntities();
 
         //Get
-        public IEnumerable<Vendor> GetAll()
+        public IEnumerable<Vendor> Get()
         {
             return db.Vendors.ToList();
         }

@@ -12,7 +12,7 @@ namespace MVC_Client.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        [Authorize(Users ="Admin")]
+        //[Authorize(Users ="Admin")]
         public ActionResult Index()
         {
             IEnumerable<CustomerMVC> customerlist;
@@ -21,17 +21,17 @@ namespace MVC_Client.Controllers
             return View(customerlist);
         }
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int id)
         {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Customer/" + id.ToString()).Result;
-                return View(response.Content.ReadAsAsync<CustomerMVC>().Result);          
+             HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Customer/" + id.ToString()).Result;
+             return View(response.Content.ReadAsAsync<CustomerMVC>().Result);          
         }
 
         [HttpPost]
         public ActionResult Edit(CustomerMVC customer)
         {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Customer/" + customer.customer_id, customer).Result;
-                return RedirectToAction("Index");            
+              HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Customer/" + customer.customer_id, customer).Result;
+              return RedirectToAction("Index");            
         }
         [Authorize(Users ="Admin")]
         public ActionResult Delete(int id)

@@ -13,7 +13,7 @@ namespace MVC_Client.Controllers
     public class VendorController : Controller
     {
         // GET: Vendor
-        [Authorize(Users ="Admin,Vendors")]
+        //[Authorize(Users ="Admin,Vendors")]
         public ActionResult Index()
         {
             IEnumerable<VendorMVC> vendorlist;
@@ -21,7 +21,7 @@ namespace MVC_Client.Controllers
             vendorlist = response.Content.ReadAsAsync<IEnumerable<VendorMVC>>().Result;
             return View(vendorlist);
         }
-        [Authorize(Users ="Admin")]
+        //[Authorize(Users ="Admin")]
         public ActionResult AddorEdit(int id = 0)
         {
             if (id == 0)
@@ -39,15 +39,16 @@ namespace MVC_Client.Controllers
             if (vendor.vendor_id == 0)
             {
                 HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Vendor", vendor).Result;
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Saved Successfully";
             }
             else
             {
                 HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Vendor/" + vendor.vendor_id, vendor).Result;
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Updated Successfully";
             }
+            return RedirectToAction("Index");
         }
-        [Authorize(Users ="Admin")]
+        //[Authorize(Users ="Admin")]
         public ActionResult Delete(int id)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Vendor/" + id.ToString()).Result;
